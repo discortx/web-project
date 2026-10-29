@@ -1,0 +1,112 @@
+/* Desktop-first. Each breakpoint recomposes the layout rather than shrinking it. */
+
+@media (max-width: 1100px) {
+  .section-head__title { grid-column: 1 / span 7; }
+  .section-head__lede { grid-column: 8 / span 5; }
+  .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
+  .footer-brand { grid-column: 1 / -1; }
+  .movie-aside { grid-column: 1 / span 5; }
+  .movie-main { grid-column: 6 / -1; }
+  .cinema-row { grid-template-columns: 2.5rem minmax(0, 3fr) minmax(0, 3fr) auto; }
+  .cinema-row__stat { display: none; }
+  .month-group__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Navigation becomes a menu panel */
+@media (max-width: 960px) {
+  .header-inner { grid-template-columns: 1fr auto; }
+  .menu-btn { display: inline-flex; }
+  .header-tools .location { display: none; }
+  .tool-btn .tool-btn__label { display: none; }
+  .tool-btn, #search-open { width: 2.5rem; min-width: 0; justify-content: center; padding: 0; }
+  .primary-nav {
+    position: fixed; inset: var(--header-h) 0 auto 0; z-index: var(--z-nav-panel); display: none; padding: var(--space-4) var(--gutter) var(--space-6);
+    background: var(--bg); box-shadow: 0 18px 30px rgba(0, 0, 0, 0.45); max-height: calc(100vh - var(--header-h)); overflow-y: auto;
+  }
+  .primary-nav.is-open { display: block; }
+  .primary-nav ul { flex-direction: column; justify-content: flex-start; gap: 0; }
+  .primary-nav li + li { margin-top: var(--space-2); }
+  .primary-nav a { display: flex; padding: var(--space-4); font-family: var(--font-display); font-size: 1.5rem; font-weight: 500; color: var(--text); }
+  .nav-extras { display: block; margin-top: var(--space-5); }
+  .nav-extras .location { display: flex; }
+  .nav-extras .location { width: 100%; }
+  .nav-extras .location select { width: 100%; }
+  body.menu-open { overflow: hidden; }
+}
+
+@media (max-width: 860px) {
+  /* On tablets and phones the artwork sits in the upper part of the cover and the copy rests on clean dark ground below it */
+  .hero__media { bottom: 40%; }
+  .hero::before { background: linear-gradient(0deg, var(--bg) 44%, rgba(32, 33, 38, 0.15) 78%); }
+  .section { padding-top: var(--space-8); }
+  .section--last { padding-bottom: var(--space-8); }
+  .section-head { margin-bottom: var(--space-6); }
+  .section-head__title, .section-head__lede, .section-head__actions { grid-column: 1 / -1; }
+
+  .upcoming__intro, .upcoming__grid { grid-column: 1 / -1; }
+  .upcoming__intro { margin-bottom: var(--space-6); }
+  .upcoming__grid > :nth-child(even) { margin-top: 0; }
+
+  .spotlight { grid-template-columns: 1fr; }
+  .spotlight__media, .spotlight__panel { grid-column: 1; }
+  .spotlight__media { grid-row: 1; aspect-ratio: 4 / 3; }
+  .spotlight__panel { grid-row: 2; margin: -4rem var(--space-3) 0; padding: var(--space-6) var(--space-5); }
+
+  .cta-band__inner { padding-block: var(--space-8); row-gap: var(--space-6); }
+  .cta-band h2, .cta-band__actions { grid-column: 1 / -1; }
+
+  .movie-layout { grid-template-columns: 1fr; padding-top: var(--space-6); }
+  .movie-aside, .movie-main { grid-column: 1; }
+  .movie-aside { position: static; grid-template-columns: minmax(8rem, 12rem) 1fr; align-items: end; margin-bottom: var(--space-6); }
+  .movie-hero { min-height: 52vh; }
+
+  .toolbar { grid-template-columns: 1fr 1fr; padding: var(--space-4); }
+  .field--search, .field--sm, .field--md { grid-column: span 2; }
+  .filters-toggle { display: inline-flex; align-items: center; justify-content: space-between; gap: var(--space-3); grid-column: 1 / -1; height: 3rem; padding: 0 var(--space-4); border: var(--edge); border-radius: var(--radius); color: var(--text); font-weight: 500; }
+  .toolbar:not(.is-open) .filters-item { display: none; }
+  .showtime-group { grid-template-columns: 1fr; gap: var(--space-3); }
+  .month-group__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6) var(--space-4); }
+}
+
+@media (max-width: 640px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .cinema-row { grid-template-columns: 2rem minmax(0, 1fr); row-gap: var(--space-2); }
+  .cinema-row__address, .cinema-row__links { grid-column: 2; }
+  .cinema-row__links { margin-top: var(--space-2); }
+  .upcoming__grid { grid-template-columns: 1fr; }
+  .month-group__grid { grid-template-columns: 1fr; }
+  .page-head { padding-block: var(--space-7) var(--space-6); }
+  .hero { min-height: min(88svh, 44rem); min-height: min(88vh, 44rem); padding-bottom: var(--space-7); }
+  .hero__actions .btn { flex: 1 1 auto; }
+  .movie-actions .btn { flex: 1 1 auto; }
+  .movie-aside { grid-template-columns: minmax(7rem, 9.5rem) 1fr; }
+  .facts { grid-template-columns: 1fr; }
+  .rail { grid-auto-columns: clamp(9rem, 44vw, 12rem); margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); scroll-padding-inline: var(--gutter); }
+  .poster-grid, .movie-main .poster-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6) var(--space-4); }
+  .search-dialog { margin-block: 4vh auto; }
+}
+
+@media (max-width: 400px) {
+  .footer-grid { grid-template-columns: 1fr; }
+  .toolbar { gap: var(--space-4); }
+}
+
+/* Touch: every interactive target is at least 44x44px with 8px or more between neighbours (small and coarse-pointer screens) */
+@media (max-width: 960px), (pointer: coarse) {
+  .wordmark { display: inline-flex; align-items: center; min-height: var(--tap); }
+  .tool-btn, .menu-btn { min-width: var(--tap); min-height: var(--tap); }
+  .chip, .btn--small, .text-btn { min-height: var(--tap); }
+  .link-arrow, .showtime-group__site, .footer-col a { display: inline-flex; align-items: center; min-height: var(--tap); }
+  .footer-col li + li { margin-top: 0; }
+  .cinema-row__name a, .showtime-group h3 a { display: inline-block; padding-block: 0.75rem; margin-block: -0.75rem; }
+  .search-dialog__results a { min-height: var(--tap); }
+}
+
+/* Laptop-narrow: the header has to hold the wordmark, five links, search and location on one row */
+@media (min-width: 961px) and (max-width: 1180px) {
+  .header-inner { gap: var(--space-4); }
+  .primary-nav a { padding: 0.6rem 0.7rem; }
+  .location select { width: 9.5rem; }
+  #search-open { min-width: 0; }
+  #search-open .tool-btn__label { display: none; }
+}

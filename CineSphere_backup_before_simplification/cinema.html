@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cinema | CineSphere</title>
+  <meta name="description" content="Cinema details and showtimes.">
+  <meta name="theme-color" content="#202126">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2713%27 fill=%27none%27 stroke=%27%23d92d4b%27 stroke-width=%273%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%274.5%27 fill=%27%23d92d4b%27/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,400;1,500&display=swap">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-nav="cinemas" data-header="solid">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a class="wordmark" href="index.html" aria-label="CineSphere home">Cine<em>sphere</em></a>
+      <nav class="primary-nav" id="primary-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html" data-nav="home">Home</a></li>
+          <li><a href="discover.html" data-nav="discover">Discover</a></li>
+          <li><a href="now-showing.html" data-nav="now-showing">Now Showing</a></li>
+          <li><a href="coming-soon.html" data-nav="coming-soon">Coming Soon</a></li>
+          <li><a href="cinemas.html" data-nav="cinemas">Cinemas</a></li>
+        </ul>
+        <div class="nav-extras">
+          <label class="location"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="square" stroke-linejoin="miter"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg></span><span class="visually-hidden">Location</span><select data-location><option>Lahore</option></select></label>
+        </div>
+      </nav>
+      <div class="header-tools">
+        <button class="tool-btn" id="search-open" type="button" aria-haspopup="dialog" aria-label="Search films"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="square" stroke-linejoin="miter"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></svg></span><span class="tool-btn__label">Search</span></button>
+        <label class="location"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="square" stroke-linejoin="miter"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg></span><span class="visually-hidden">Location</span><select data-location><option>Lahore</option></select></label>
+        <button class="tool-btn menu-btn" id="menu-button" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="square" stroke-linejoin="miter"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <div id="cinema-root">
+      <div class="container section section--last"><p class="eyebrow">Loading cinema…</p></div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="wordmark" href="index.html" aria-label="CineSphere home">Cine<em>sphere</em></a>
+          <p>Discover films, then find where and when they're showing in Lahore, Pakistan.</p>
+        </div>
+        <nav class="footer-col" aria-label="Explore">
+          <h2>Explore</h2>
+          <ul>
+            <li><a href="discover.html">Discover</a></li>
+            <li><a href="now-showing.html">Now showing</a></li>
+            <li><a href="coming-soon.html">Coming soon</a></li>
+            <li><a href="cinemas.html">Cinemas</a></li>
+          </ul>
+        </nav>
+        <div class="footer-col">
+          <h2>Cinemas in Lahore</h2>
+          <ul data-footer-cinemas>
+            <li><a href="cinemas.html">All cinemas</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>About</h2>
+          <ul>
+            <li>Lahore, Pakistan</li>
+            <li>A university Web Technology course project</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-legal">
+        <div>
+          <p>Showtimes are demonstration data. They are not live cinema listings and tickets can't be booked here.</p>
+          <p>This website uses TMDB and the TMDB APIs but is not endorsed, certified, or otherwise approved by TMDB. Illustrated key art stands in for official posters until film data is synced from TMDB.</p>
+        </div>
+        <p>&copy; <span data-year>2026</span> CineSphere</p>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="search-dialog" id="search-dialog" aria-labelledby="search-label">
+    <label class="eyebrow search-dialog__label" id="search-label" for="search-input">Search films by title, genre, director or actor</label>
+    <form class="search-dialog__form" method="get" action="discover.html" role="search">
+      <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="square" stroke-linejoin="miter"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></svg></span>
+      <input id="search-input" type="search" name="q" placeholder="Search films" autocomplete="off">
+      <button class="round-btn search-dialog__close" type="button" aria-label="Close search"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="square" stroke-linejoin="miter"><path d="M6 6l12 12M18 6L6 18"/></svg></span></button>
+    </form>
+    <div class="search-dialog__results" aria-live="polite"><p class="search-dialog__hint">Start typing a title, genre, director or actor.</p></div>
+    <div class="search-dialog__foot"><span>Press Esc to close</span><a class="link-arrow" id="search-all" href="discover.html">See all results <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="square" stroke-linejoin="miter"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a></div>
+  </dialog>
+
+  <script type="module" src="js/pages/cinema.js"></script>
+</body>
+</html>

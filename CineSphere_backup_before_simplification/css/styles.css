@@ -1,0 +1,167 @@
+/* CineSphere design tokens, typography and layout primitives.
+   Concept: "The Film Edit" — a printed film programme on graphite stock. */
+
+:root {
+  /* Palette: one charcoal family. Depth comes from light and shadow, not from different colours. */
+  --bg: #202126;            /* page */
+  --bg-2: #26272d;          /* raised surface */
+  --surface: #2c2d34;       /* hover / skeleton */
+  --inset: #1b1c21;         /* recessed surface */
+  --text: #f3f0ed;          /* 13:1 on raised */
+  --text-2: #b6b6be;        /* 7.4:1 */
+  --text-3: #9d9da7;        /* 5.5:1 */
+  --accent: #d92d4b;        /* marks, lines, selected indicators (3.1:1+ as non-text) */
+  --accent-fill: #c42a42;   /* button fill: off-white label on it is 4.7:1 */
+  --accent-hover: #ad2238;
+  --line: rgba(255, 255, 255, 0.07);  /* hairlines */
+  --control: #72727d;       /* outline of text inputs and selects (3:1 for UI components) */
+  --overlay: rgba(12, 12, 15, 0.82);
+
+  /* Neumorphism: one light source, top-left. Dark shadow falls bottom-right, light shadow top-left. */
+  --sh-dark: rgba(0, 0, 0, 0.5);
+  --sh-light: rgba(255, 255, 255, 0.045);
+  --shadow-raised:    6px 6px 14px var(--sh-dark), -6px -6px 14px var(--sh-light);
+  --shadow-raised-sm: 3px 3px 8px var(--sh-dark), -3px -3px 8px var(--sh-light);
+  --shadow-raised-lg: 12px 14px 30px var(--sh-dark), -8px -8px 22px var(--sh-light);
+  --shadow-inset:     inset 4px 4px 9px var(--sh-dark), inset -3px -3px 8px var(--sh-light);
+  --shadow-inset-sm:  inset 2px 2px 5px var(--sh-dark), inset -2px -2px 4px var(--sh-light);
+  --edge: 1px solid rgba(255, 255, 255, 0.06);   /* quiet edge that keeps raised shapes legible */
+
+  /* Typography (skill: "Classic Elegant", Playfair Display + Inter) */
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fs-display: clamp(2.9rem, 1.6rem + 5.6vw, 6.4rem);
+  --fs-h1: clamp(2.6rem, 1.6rem + 4vw, 5rem);
+  --fs-h2: clamp(2rem, 1.3rem + 2.8vw, 3.5rem);
+  --fs-h3: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);
+  --fs-lead: clamp(1rem, 0.95rem + 0.3vw, 1.1875rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-meta: 0.75rem;
+
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-9: 7rem;
+
+  /* Layout and shape */
+  --container: 1240px;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --header-h: 68px;
+  --radius: 12px;           /* controls */
+  --radius-lg: 22px;        /* the few large panels */
+  --radius-img: 10px;       /* artwork */
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --tap: 2.75rem;           /* minimum touch target */
+
+  /* Motion: press feedback 150ms, everything else 250ms, nothing over 500ms */
+  --dur-fast: 150ms;
+  --dur: 250ms;
+  --dur-slow: 400ms;
+  --dur-reveal: 450ms;
+
+  /* Z-index scale */
+  --z-content: 10;
+  --z-nav-panel: 40;
+  --z-header: 50;
+  --z-skip: 100;
+}
+
+html { scroll-padding-top: calc(var(--header-h) + 1rem); }
+
+body {
+  background: var(--bg);
+  color: var(--text-2);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  display: flex;
+  flex-direction: column;
+}
+main { flex: 1; }
+body[data-header="solid"] main { padding-top: var(--header-h); }
+
+h1, h2, h3 {
+  color: var(--text);
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+h1 { font-size: var(--fs-h1); font-weight: 600; letter-spacing: -0.025em; }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); line-height: 1.2; letter-spacing: -0.005em; }
+em { font-style: italic; font-weight: 500; }
+p { max-width: 68ch; }
+
+a { text-decoration-color: var(--line); text-underline-offset: 3px; }
+a:hover { color: var(--text); }
+
+:focus-visible { outline: 3px solid var(--text); outline-offset: 3px; }   /* skill: 3-4px ring, never removed */
+::selection { background: var(--accent); color: var(--text); }
+
+/* Layout */
+.container { width: min(100% - 2 * var(--gutter), var(--container)); margin-inline: auto; }
+.section { padding-block: var(--space-9) 0; }
+.section--last { padding-bottom: var(--space-9); }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+.skip-link {
+  position: fixed; left: var(--space-4); top: -4rem; z-index: var(--z-skip);
+  padding: var(--space-3) var(--space-4); background: var(--text); color: var(--bg); font-weight: 600;
+}
+.skip-link:focus { top: var(--space-4); }
+
+/* Small uppercase labels */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: var(--space-3);
+  font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-3);
+}
+.eyebrow--accent::before { content: ""; width: 1.75rem; height: 2px; background: var(--accent); }
+
+/* Buttons and links */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-3);
+  min-height: 3rem; padding: 0.8rem 1.6rem;
+  background: var(--accent-fill); border: var(--edge); border-radius: var(--radius); color: var(--text);
+  font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+  box-shadow: var(--shadow-raised-sm);
+  transition: box-shadow var(--dur) var(--ease), background-color var(--dur) var(--ease), transform var(--dur-fast) var(--ease);
+}
+.btn:hover { background: var(--accent-hover); color: var(--text); }
+.btn:active { box-shadow: var(--shadow-inset-sm); transform: translateY(1px); }   /* pressed into the surface */
+/* Secondary: neutral raised surface, no crimson */
+.btn--ghost { background: var(--bg-2); color: var(--text); }
+.btn--ghost:hover { background: var(--surface); color: var(--text); }
+.btn--small { min-height: 2.5rem; padding: 0.55rem 1.1rem; }
+.btn:disabled, .btn[aria-disabled="true"] { opacity: 0.45; box-shadow: none; pointer-events: none; }
+
+.link-arrow {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text); text-decoration: none;
+}
+.link-arrow .icon { transition: transform var(--dur) var(--ease); }
+.link-arrow:hover .icon { transform: translateX(4px); }
+.link-arrow:hover { color: var(--text); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 6px; text-decoration-thickness: 2px; }
+
+.icon { display: inline-grid; place-items: center; width: 1.125em; height: 1.125em; flex: none; }
+.icon svg { width: 100%; height: 100%; }
+
+/* Scroll reveal: elements are only hidden once JavaScript has taken control of them */
+.reveal-ready:not(.is-in) { opacity: 0; transform: translateY(12px); }
+.reveal-ready { transition: opacity var(--dur-reveal) var(--ease), transform var(--dur-reveal) var(--ease); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  .reveal-ready:not(.is-in) { transform: none; }
+}

@@ -1,0 +1,8 @@
+[
+  { "id": "C001", "name": "Cinepax Packages Mall", "city": "Lahore", "area": "Walton Road", "address": "Packages Mall, Walton Road, Lahore", "officialWebsite": "https://cinepax.com" },
+  { "id": "C002", "name": "Universal Cinemas Emporium Mall", "city": "Lahore", "area": "Johar Town", "address": "Emporium Mall, 16M Abdul Haque Road, Trade Centre Commercial Area Phase 2, Johar Town, Lahore", "officialWebsite": "https://universalcinemas.com" },
+  { "id": "C003", "name": "CineStar Township", "city": "Lahore", "area": "Township", "address": "Plot 13/2, Ali Road, Civic Center, Commercial Area, Township, Lahore", "officialWebsite": "https://cinestar.pk" },
+  { "id": "C004", "name": "CineStar Xinhua Mall", "city": "Lahore", "area": "Gulberg III", "address": "4th Floor, Xinhua Mall, Mian Mehmood Ali Kasuri Road, Block B-2, Gulberg III, Lahore", "officialWebsite": "https://cinestar.pk" },
+  { "id": "C005", "name": "CineStar DHA Raya Club", "city": "Lahore", "area": "DHA Phase 6", "address": "Sector M, Defence Raya Golf Resort, DHA Phase 6, Lahore", "officialWebsite": "https://cinestar.pk" },
+  { "id": "C006", "name": "Raiha CineGold Plex", "city": "Lahore", "area": "Bahria Town", "address": "Sector F, Bahria Town, Mohlanwal, Lahore", "officialWebsite": "https://www.cinegoldplex.com" }
+]

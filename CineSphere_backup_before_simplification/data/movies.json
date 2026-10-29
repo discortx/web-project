@@ -1,0 +1,568 @@
+[
+  {
+    "id": 1,
+    "tmdbId": null,
+    "title": "Alien: Romulus",
+    "overview": "Young colonists scavenging a derelict space station come face to face with the most terrifying life form in the universe.",
+    "posterPath": null,
+    "backdropPath": null,
+    "genres": [
+      "Horror",
+      "Science Fiction"
+    ],
+    "releaseDate": "2024-08-14",
+    "runtimeMinutes": 119,
+    "tmdbRating": null,
+    "tmdbVoteCount": null,
+    "originalLanguage": "en",
+    "trailerKey": null,
+    "cast": [
+      "Cailee Spaeny",
+      "David Jonsson",
+      "Archie Renaux"
+    ],
+    "director": "Fede Álvarez",
+    "dataSource": "seed"
+  },
+  {
+    "id": 2,
+    "tmdbId": null,
+    "title": "Deadpool & Wolverine",
+    "overview": "A listless Wade Wilson is pulled back into action when the TVA recruits him for a mission that teams him with a reluctant Wolverine.",
+    "posterPath": null,
+    "backdropPath": null,
+    "genres": [
+      "Action",
+      "Comedy",
+      "Science Fiction"
+    ],
+    "releaseDate": "2024-07-24",
+    "runtimeMinutes": 128,
+    "tmdbRating": null,
+    "tmdbVoteCount": null,
+    "originalLanguage": "en",
+    "trailerKey": null,
+    "cast": [
+      "Ryan Reynolds",
+      "Hugh Jackman",
+      "Emma Corrin"
+    ],
+    "director": "Shawn Levy",
+    "dataSource": "seed"
+  },
+  {
+    "id": 3,
+    "tmdbId": null,
+    "title": "Dune: Part Two",
+    "overview": "Paul Atreides unites with the Fremen while seeking revenge against those who destroyed his family.",
+    "posterPath": null,
+    "backdropPath": null,
+    "genres": [
+      "Science Fiction",
+      "Adventure"
+    ],
+    "releaseDate": "2024-02-28",
+    "runtimeMinutes": 166,
+    "tmdbRating": null,
+    "tmdbVoteCount": null,
+    "originalLanguage": "en",
+    "trailerKey": null,
+    "cast": [
+      "Timothée Chalamet",
+      "Zendaya",
+      "Rebecca Ferguson"
+    ],
+    "director": "Denis Villeneuve",
+    "dataSource": "seed"
+  },
+  {
+    "id": 4,
+    "tmdbId": null,
+    "title": "Inside Out 2",
+    "overview": "Riley enters her teenage years and new emotions arrive at Headquarters, shaking up the old crew.",
+    "posterPath": null,
+    "backdropPath": null,
+    "genres": [
+      "Animation",
+      "Family",
+      "Comedy"
+    ],
+    "releaseDate": "2024-06-11",
+    "runtimeMinutes": 96,
+    "tmdbRating": null,
+    "tmdbVoteCount": null,
+    "originalLanguage": "en",
+    "trailerKey": null,
+    "cast": [
+      "Amy Poehler",
+      "Maya Hawke",
+      "Kensington Tallman"
+    ],
+    "director": "Kelsey Mann",
+    "dataSource": "seed"
+  },
+  {
+    "id": 5,
+    "tmdbId": null,
+    "title": "Gladiator II",
+    "overview": "Years after witnessing the death of Maximus, Lucius is forced into the Colosseum and must look to his past for strength.",
+    "posterPath": null,
+    "backdropPath": null,
+    "genres": [
+      "Action",
+      "Drama",
+      "Adventure"
+    ],
+    "releaseDate": "2024-11-13",
+    "runtimeMinutes": 148,
+    "tmdbRating": null,
+    "tmdbVoteCount": null,
+    "originalLanguage": "en",
+    "trailerKey": null,
+    "cast": [
+      "Paul Mescal",
+      "Pedro Pascal",
+      "Denzel Washington"
+    ],
+    "director": "Ridley Scott",
+    "dataSource": "seed"
+  },
+  {
+    "id": 6,
+    "tmdbId": null,
+    "title": "Wicked",
+    "overview": "Elphaba and Glinda meet as students at Shiz University and form an unlikely friendship that changes Oz forever.",
+    "posterPath": null,
+    "backdropPath": null,
+    "genres": [
+      "Drama",
+      "Romance",
+      "Fantasy"
+    ],
+    "releaseDate": "2024-11-20",
+    "runtimeMinutes": 160,
+    "tmdbRating": null,
+    "tmdbVoteCount": null,
+    "originalLanguage": "en",
+    "trailerKey": null,
+    "cast": [
+      "Cynthia Erivo",
+      "Ariana Grande",
+      "Jonathan Bailey"
+    ],
+    "director": "Jon M. Chu",
+    "dataSource": "seed"
+  },
+  {
+    "id": 7,
+    "tmdbId": null,
+    "title": "Sinners",
+    "overview": "Twin brothers return to their Mississippi hometown to start over, only to find an even greater evil waiting.",
+    "posterPath": null,
+    "backdropPath": null,
+    "genres": [
+      "Horror",
+      "Thriller",
+      "Drama"
+    ],
+    "releaseDate": "2025-04-16",
+    "runtimeMinutes": 138,
+    "tmdbRating": null,
+    "tmdbVoteCount": null,
+    "originalLanguage": "en",
+    "trailerKey": null,
+    "cast": [
+      "Michael B. Jordan",
+      "Hailee Steinfeld",
+      "Miles Caton"
+    ],
+    "director": "Ryan Coogler",
+    "dataSource": "seed"
+  },
+  {
+    "id": 8,
+    "tmdbId": null,
+    "title": "Superman",
+    "overview": "Superman sets out to reconcile his Kryptonian heritage with his human upbringing as Clark Kent.",
+    "posterPath": null,
+    "backdropPath": null,
+    "genres": [
+      "Action",
+      "Science Fiction",
+      "Adventure"
+    ],
+    "releaseDate": "2025-07-09",
+    "runtimeMinutes": 129,
+    "tmdbRating": null,
+    "tmdbVoteCount": null,
+    "originalLanguage": "en",
+    "trailerKey": null,
+    "cast": [
+      "David Corenswet",
+      "Rachel Brosnahan",
+      "Nicholas Hoult"
+    ],
+    "director": "James Gunn",
+    "dataSource": "seed"
+  },
+  {
+    "id": 9,
+    "tmdbId": null,
+    "title": "Zootopia 2",
+    "overview": "Judy Hopps and Nick Wilde go undercover to investigate a new case that takes them to unexplored corners of Zootopia.",
+    "posterPath": null,
+    "backdropPath": null,
+    "genres": [
+      "Animation",
+      "Family",
+      "Comedy"
+    ],
+    "releaseDate": "2025-11-26",
+    "runtimeMinutes": 108,
+    "tmdbRating": null,
+    "tmdbVoteCount": null,
+    "originalLanguage": "en",
+    "trailerKey": null,
+    "cast": [
+      "Ginnifer Goodwin",
+      "Jason Bateman",
+      "Ke Huy Quan"
+    ],
+    "director": "Jared Bush",
+    "dataSource": "seed"
+  },
+  {
+    "id": 10,
+    "tmdbId": null,
+    "title": "Jawan",
+    "overview": "A man driven by a personal vendetta sets out to right the wrongs in society, with a group of women by his side.",
+    "posterPath": null,
+    "backdropPath": null,
+    "genres": [
+      "Action",
+      "Thriller"
+    ],
+    "releaseDate": "2023-09-07",
+    "runtimeMinutes": 169,
+    "tmdbRating": null,
+    "tmdbVoteCount": null,
+    "originalLanguage": "hi",
+    "trailerKey": null,
+    "cast": [
+      "Shah Rukh Khan",
+      "Nayanthara",
+      "Vijay Sethupathi"
+    ],
+    "director": "Atlee",
+    "dataSource": "seed"
+  },
+  {
+    "id": 11,
+    "tmdbId": null,
+    "title": "Pathaan",
+    "overview": "An exiled Indian spy returns to stop a rogue former agent from launching a deadly attack on India.",
+    "posterPath": null,
+    "backdropPath": null,
+    "genres": [
+      "Action",
+      "Thriller",
+      "Adventure"
+    ],
+    "releaseDate": "2023-01-25",
+    "runtimeMinutes": 146,
+    "tmdbRating": null,
+    "tmdbVoteCount": null,
+    "originalLanguage": "hi",
+    "trailerKey": null,
+    "cast": [
+      "Shah Rukh Khan",
+      "Deepika Padukone",
+      "John Abraham"
+    ],
+    "director": "Siddharth Anand",
+    "dataSource": "seed"
+  },
+  {
+    "id": 12,
+    "tmdbId": null,
+    "title": "Joyland",
+    "overview": "The youngest son of a patriarchal Lahore family secretly joins an erotic dance theatre and falls for its transgender star.",
+    "posterPath": null,
+    "backdropPath": null,
+    "genres": [
+      "Drama",
+      "Romance"
+    ],
+    "releaseDate": "2022-11-18",
+    "runtimeMinutes": 126,
+    "tmdbRating": null,
+    "tmdbVoteCount": null,
+    "originalLanguage": "ur",
+    "trailerKey": null,
+    "cast": [
+      "Ali Junejo",
+      "Rasti Farooq",
+      "Alina Khan"
+    ],
+    "director": "Saim Sadiq",
+    "dataSource": "seed"
+  },
+  {
+    "id": 13,
+    "tmdbId": null,
+    "title": "Oppenheimer",
+    "overview": "The story of J. Robert Oppenheimer and the creation of the atomic bomb during World War II.",
+    "posterPath": null,
+    "backdropPath": null,
+    "genres": [
+      "Drama",
+      "History",
+      "Thriller"
+    ],
+    "releaseDate": "2023-07-19",
+    "runtimeMinutes": 181,
+    "tmdbRating": null,
+    "tmdbVoteCount": null,
+    "originalLanguage": "en",
+    "trailerKey": null,
+    "cast": [
+      "Cillian Murphy",
+      "Emily Blunt",
+      "Robert Downey Jr."
+    ],
+    "director": "Christopher Nolan",
+    "dataSource": "seed"
+  },
+  {
+    "id": 14,
+    "tmdbId": null,
+    "title": "Teefa in Trouble",
+    "overview": "A bumbling Lahori falls for a Polish woman and gets tangled up with spies and criminals in Poland.",
+    "posterPath": null,
+    "backdropPath": null,
+    "genres": [
+      "Comedy",
+      "Action",
+      "Romance"
+    ],
+    "releaseDate": "2018-07-20",
+    "runtimeMinutes": 135,
+    "tmdbRating": null,
+    "tmdbVoteCount": null,
+    "originalLanguage": "ur",
+    "trailerKey": null,
+    "cast": [
+      "Ali Zafar",
+      "Maya Ali",
+      "Faran Tahir"
+    ],
+    "director": "Ahsan Rahim",
+    "dataSource": "seed"
+  },
+  {
+    "id": 15,
+    "tmdbId": null,
+    "title": "Parwaaz Hai Junoon",
+    "overview": "Pakistan Air Force pilots train and fly together in a story of courage, friendship and sacrifice.",
+    "posterPath": null,
+    "backdropPath": null,
+    "genres": [
+      "Action",
+      "Drama"
+    ],
+    "releaseDate": "2018-08-14",
+    "runtimeMinutes": 130,
+    "tmdbRating": null,
+    "tmdbVoteCount": null,
+    "originalLanguage": "ur",
+    "trailerKey": null,
+    "cast": [
+      "Hamza Ali Abbasi",
+      "Ahad Raza Mir",
+      "Kubra Khan"
+    ],
+    "director": "Haseeb Hasan",
+    "dataSource": "seed"
+  },
+  {
+    "id": 16,
+    "tmdbId": null,
+    "title": "Load Wedding",
+    "overview": "A wedding-obsessed family's budget troubles collide with a young man's attempt to marry the woman he loves.",
+    "posterPath": null,
+    "backdropPath": null,
+    "genres": [
+      "Comedy",
+      "Romance",
+      "Drama"
+    ],
+    "releaseDate": "2018-06-16",
+    "runtimeMinutes": 130,
+    "tmdbRating": null,
+    "tmdbVoteCount": null,
+    "originalLanguage": "ur",
+    "trailerKey": null,
+    "cast": [
+      "Fahad Mustafa",
+      "Mehwish Hayat",
+      "Faiza Hasan"
+    ],
+    "director": "Faisal Qureshi",
+    "dataSource": "seed"
+  },
+  {
+    "id": 17,
+    "tmdbId": null,
+    "title": "Avengers: Doomsday",
+    "overview": "Earth's mightiest heroes face a new multiversal threat in the next chapter of the Avengers saga.",
+    "posterPath": null,
+    "backdropPath": null,
+    "genres": [
+      "Action",
+      "Science Fiction",
+      "Adventure"
+    ],
+    "releaseDate": "2026-12-18",
+    "runtimeMinutes": 150,
+    "tmdbRating": null,
+    "tmdbVoteCount": null,
+    "originalLanguage": "en",
+    "trailerKey": null,
+    "cast": [
+      "Robert Downey Jr.",
+      "Chris Hemsworth",
+      "Anthony Mackie"
+    ],
+    "director": "Anthony Russo, Joe Russo",
+    "dataSource": "seed"
+  },
+  {
+    "id": 18,
+    "tmdbId": null,
+    "title": "Dune: Part Three",
+    "overview": "Paul Atreides faces the consequences of his rise as emperor in the conclusion of Villeneuve's Dune saga.",
+    "posterPath": null,
+    "backdropPath": null,
+    "genres": [
+      "Science Fiction",
+      "Adventure"
+    ],
+    "releaseDate": "2026-12-18",
+    "runtimeMinutes": 150,
+    "tmdbRating": null,
+    "tmdbVoteCount": null,
+    "originalLanguage": "en",
+    "trailerKey": null,
+    "cast": [
+      "Timothée Chalamet",
+      "Zendaya",
+      "Anya Taylor-Joy"
+    ],
+    "director": "Denis Villeneuve",
+    "dataSource": "seed"
+  },
+  {
+    "id": 19,
+    "tmdbId": null,
+    "title": "The Hunger Games: Sunrise on the Reaping",
+    "overview": "A young Haymitch Abernathy is drawn into the 50th Hunger Games, the Second Quarter Quell.",
+    "posterPath": null,
+    "backdropPath": null,
+    "genres": [
+      "Action",
+      "Science Fiction",
+      "Thriller"
+    ],
+    "releaseDate": "2026-11-20",
+    "runtimeMinutes": 140,
+    "tmdbRating": null,
+    "tmdbVoteCount": null,
+    "originalLanguage": "en",
+    "trailerKey": null,
+    "cast": [
+      "Joseph Zada",
+      "Ralph Fiennes",
+      "Elle Fanning"
+    ],
+    "director": "Francis Lawrence",
+    "dataSource": "seed"
+  },
+  {
+    "id": 20,
+    "tmdbId": null,
+    "title": "Narnia: The Magician's Nephew",
+    "overview": "Two children stumble into a magical world and witness the birth of Narnia.",
+    "posterPath": null,
+    "backdropPath": null,
+    "genres": [
+      "Fantasy",
+      "Adventure",
+      "Family"
+    ],
+    "releaseDate": "2026-11-26",
+    "runtimeMinutes": 130,
+    "tmdbRating": null,
+    "tmdbVoteCount": null,
+    "originalLanguage": "en",
+    "trailerKey": null,
+    "cast": [
+      "Carey Mulligan",
+      "Daniel Craig",
+      "Meryl Streep"
+    ],
+    "director": "Greta Gerwig",
+    "dataSource": "seed"
+  },
+  {
+    "id": 21,
+    "tmdbId": null,
+    "title": "Jumanji 3",
+    "overview": "The gang returns to the dangerous game world for another jungle adventure.",
+    "posterPath": null,
+    "backdropPath": null,
+    "genres": [
+      "Adventure",
+      "Comedy",
+      "Action"
+    ],
+    "releaseDate": "2026-12-11",
+    "runtimeMinutes": 120,
+    "tmdbRating": null,
+    "tmdbVoteCount": null,
+    "originalLanguage": "en",
+    "trailerKey": null,
+    "cast": [
+      "Dwayne Johnson",
+      "Kevin Hart",
+      "Jack Black"
+    ],
+    "director": "Jake Kasdan",
+    "dataSource": "seed"
+  },
+  {
+    "id": 22,
+    "tmdbId": null,
+    "title": "Shrek 5",
+    "overview": "The green ogre returns for a new fairy-tale misadventure.",
+    "posterPath": null,
+    "backdropPath": null,
+    "genres": [
+      "Animation",
+      "Comedy",
+      "Family"
+    ],
+    "releaseDate": "2027-06-30",
+    "runtimeMinutes": 95,
+    "tmdbRating": null,
+    "tmdbVoteCount": null,
+    "originalLanguage": "en",
+    "trailerKey": null,
+    "cast": [
+      "Mike Myers",
+      "Eddie Murphy",
+      "Cameron Diaz"
+    ],
+    "director": "Walt Dohrn",
+    "dataSource": "seed"
+  }
+]
