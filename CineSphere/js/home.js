@@ -102,7 +102,7 @@ if (!wantsLessMotion) {
 // ================= 2. Now showing =================
 let rail = document.getElementById("now-rail");
 for (let i = 0; i < nowShowing.length && i < 12; i++) {
-    let count = countMovieShowtimes(nowShowing[i].id);
+    let count = findShowtimes(nowShowing[i].id, "any").length;
     rail.innerHTML += makePosterCard(nowShowing[i], count + " screenings");
 }
 
@@ -139,7 +139,7 @@ for (let i = 0; i < nowShowing.length; i++) {
 
 if (pick) {
     document.getElementById("pick").innerHTML = `
-        <div class="pick-picture">${makeStill(pick)}</div>
+        <div class="pick-picture">${makeBackdrop(pick)}</div>
         <div class="pick-text">
             <p class="eyebrow">Editor's pick</p>
             <h3>${pick.title}</h3>
@@ -153,16 +153,5 @@ if (pick) {
 // ================= 5. Cinemas =================
 let cinemaBox = document.getElementById("cinema-list");
 for (let i = 0; i < cinemas.length; i++) {
-    let cinema = cinemas[i];
-    cinemaBox.innerHTML += `
-        <li class="cinema-row">
-            <span class="cinema-number">0${i + 1}</span>
-            <div>
-                <h3><a href="cinema.html?id=${cinema.id}">${cinema.name}</a></h3>
-                <p class="small-text">${cinema.area}</p>
-            </div>
-            <p class="small-text">${cinema.address}</p>
-            <p class="small-text"><strong>${countCinemaShowtimes(cinema.id)}</strong> demo screenings</p>
-            <a class="arrow-link" href="cinema.html?id=${cinema.id}">Showtimes &rarr;</a>
-        </li>`;
+    cinemaBox.innerHTML += makeCinemaRow(cinemas[i], i + 1);
 }

@@ -32,18 +32,7 @@ function showCinemas() {
     }
 
     for (let i = 0; i < results.length; i++) {
-        let cinema = results[i];
-        listBox.innerHTML += `
-            <li class="cinema-row">
-                <span class="cinema-number">0${i + 1}</span>
-                <div>
-                    <h3><a href="cinema.html?id=${cinema.id}">${cinema.name}</a></h3>
-                    <p class="small-text">${cinema.area}</p>
-                </div>
-                <p class="small-text">${cinema.address}</p>
-                <p class="small-text"><strong>${countCinemaShowtimes(cinema.id)}</strong> demo screenings</p>
-                <a class="arrow-link" href="cinema.html?id=${cinema.id}">Showtimes &rarr;</a>
-            </li>`;
+        listBox.innerHTML += makeCinemaRow(results[i], i + 1);
     }
 }
 

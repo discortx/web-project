@@ -46,7 +46,7 @@ body {
     line-height: 1.6;
 }
 
-img, svg {
+img {
     display: block;
     width: 100%;
 }
@@ -155,20 +155,6 @@ em { font-weight: 500; }
 
 .empty .button {
     margin-top: 16px;
-}
-
-.note {
-    margin-top: 24px;
-    padding: 12px 16px;
-    background: var(--inset);
-    border-left: 3px solid var(--red);
-    border-radius: var(--radius);
-    box-shadow: var(--inset-shadow-small);
-    font-size: 0.875rem;
-}
-
-.note strong {
-    color: var(--text);
 }
 
 
@@ -374,7 +360,7 @@ em { font-weight: 500; }
     opacity: 1;
 }
 
-.hero-slide svg, .backdrop-image {
+.backdrop-image {
     height: 100%;
     object-fit: cover;
 }
@@ -478,11 +464,6 @@ em { font-weight: 500; }
     border-radius: 6px;
 }
 
-.hero-note {
-    margin-top: 16px;
-    color: var(--text-muted);
-    font-size: 0.75rem;
-}
 
 
 /* ================= 6. Home page sections ================= */
@@ -673,7 +654,7 @@ em { font-weight: 500; }
     box-shadow: var(--raised-shadow-small);
 }
 
-.poster svg, .poster img {
+.poster img {
     height: 100%;
     object-fit: cover;
 }
@@ -706,17 +687,9 @@ em { font-weight: 500; }
     gap: 40px 24px;
 }
 
-/* The picture zooms slightly when the mouse is over the card. */
+/* The card gets a bigger shadow when the mouse is over it. */
 .poster-card:hover .poster, .upcoming-card:hover .still {
     box-shadow: var(--raised-shadow);
-}
-
-.poster-card:hover svg, .upcoming-card:hover svg {
-    transform: scale(1.04);
-}
-
-.poster svg, .still svg {
-    transition: transform 0.3s;
 }
 
 .poster-card:hover h3, .upcoming-card:hover h3 {
@@ -1000,7 +973,6 @@ em { font-weight: 500; }
 }
 
 
-
 /* ================= 10. Footer ================= */
 .site-footer {
     margin-top: 100px;
@@ -1107,11 +1079,6 @@ em { font-weight: 500; }
         width: auto;
     }
 
-    /* On the home page the opened menu needs a solid colour too. */
-    .site-header .nav {
-        background: var(--bg);
-    }
-
     .poster-grid, .upcoming-list.wide {
         grid-template-columns: repeat(3, 1fr);
     }
@@ -1163,7 +1130,7 @@ em { font-weight: 500; }
         flex: 1;
     }
 
-    .poster-grid, .movie-main .poster-grid, .upcoming-list, .upcoming-list.wide, .facts {
+    .poster-grid, .movie-main .poster-grid {
         grid-template-columns: 1fr 1fr;
     }
 
@@ -1192,13 +1159,9 @@ em { font-weight: 500; }
     }
 }
 
-/* People who asked for less motion get no sliding or zooming. */
+/* People who asked for less motion get no fade. */
 @media (prefers-reduced-motion: reduce) {
-    .hero-slide, .poster svg, .still svg {
+    .hero-slide {
         transition: none;
-    }
-
-    .poster-card:hover svg, .upcoming-card:hover svg {
-        transform: none;
     }
 }

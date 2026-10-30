@@ -2,7 +2,7 @@
 // movies    : the films (seed data: titles, years and genres are real; other details were written by hand).
 // cinemas   : cinemas in Lahore (names and addresses taken from official sites and directories).
 // showtimes : DEMONSTRATION screenings. They are NOT real cinema schedules and nothing can be booked.
-// poster / backdrop are file paths to pictures in the assets folder. A movie without them gets a drawn picture instead.
+// poster / backdrop are file paths to pictures in the assets folder. Every movie needs both.
 
 let movies = [
   { id: 1, rating: "18+", poster: "assets/posters/alien-romulus.webp", backdrop: "assets/backdrops/alien-romulus.webp", title: "Alien: Romulus", genres: ["Horror", "Science Fiction"], releaseDate: "2024-08-16", runtime: 119, language: "English", director: "Fede Álvarez",

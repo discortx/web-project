@@ -9,29 +9,13 @@ let countText = document.getElementById("result-count");
 
 
 function showGenreButtons() {
-    let names = [""].concat(getGenres(nowShowing));
-    genreBox.innerHTML = "";
+    makeGenreButtons(genreBox, getGenres(nowShowing), selectedGenre, pickGenre);
+}
 
-    for (let i = 0; i < names.length; i++) {
-        let button = document.createElement("button");
-        button.type = "button";
-        button.className = "chip";
-        button.textContent = names[i] == "" ? "All" : names[i];
-
-        if (names[i] == selectedGenre) {
-            button.classList.add("selected");
-            button.setAttribute("aria-pressed", "true");
-        } else {
-            button.setAttribute("aria-pressed", "false");
-        }
-
-        button.addEventListener("click", function () {
-            selectedGenre = names[i];
-            showGenreButtons();
-            showMovies();
-        });
-        genreBox.appendChild(button);
-    }
+function pickGenre(genre) {
+    selectedGenre = genre;
+    showGenreButtons();
+    showMovies();
 }
 
 
@@ -51,7 +35,7 @@ function showMovies() {
         movieBox.innerHTML = `<p class="empty">No films in this genre. Choose another genre.</p>`;
     }
     for (let i = 0; i < results.length; i++) {
-        let count = countMovieShowtimes(results[i].id);
+        let count = findShowtimes(results[i].id, "any").length;
         movieBox.innerHTML += makePosterCard(results[i], count + " screenings");
     }
 }

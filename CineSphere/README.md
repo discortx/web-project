@@ -38,7 +38,7 @@ Every page loads `data.js`, then `main.js`, then its own script.
 - Upcoming release dates are unconfirmed and the site says so.
 - **Showtimes are demonstration data.** They are not real schedules and nothing can be booked.
 - Cinema names and addresses were checked against official sites and directories. Verify them before presenting.
-- Posters and backdrops are in `assets/posters/` and `assets/backdrops/` (`.webp`, named after the film). They come from TMDB. A film without `poster` / `backdrop` in `js/data.js` gets a simple drawn picture instead.
+- Posters and backdrops are in `assets/posters/` and `assets/backdrops/` (`.webp`, named after the film). They come from TMDB.  Every film in `js/data.js` needs both a `poster` and a `backdrop`.
 - This website uses TMDB and the TMDB APIs but is not endorsed, certified, or otherwise approved by TMDB.
 
 ## Design

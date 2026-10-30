@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CineSphere | Films and showtimes in Lahore</title>
+  <meta name="description" content="Discover films, explore upcoming releases and find where they're showing in Lahore, Pakistan.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2713%27 fill=%27none%27 stroke=%27%23d92d4b%27 stroke-width=%273%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%274.5%27 fill=%27%23d92d4b%27/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,400;1,500&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="visually-hidden" href="#main">Skip to content</a>
+
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">Cine<em>sphere</em></a>
+      <button class="menu-button" id="menu-button" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+      <nav class="nav" id="nav" aria-label="Main">
+        <a class="nav-link" href="index.html" aria-current="page">Home</a>
+        <a class="nav-link" href="discover.html">Discover</a>
+        <a class="nav-link" href="now-showing.html">Now Showing</a>
+        <a class="nav-link" href="coming-soon.html">Coming Soon</a>
+        <a class="nav-link" href="cinemas.html">Cinemas</a>
+        <form class="nav-search" action="discover.html" method="get" role="search">
+          <label class="visually-hidden" for="nav-search-box">Search films</label>
+          <input id="nav-search-box" type="search" name="q" placeholder="Search films">
+          <button type="submit">Search</button>
+        </form>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Cover: five films take turns (see js/home.js) -->
+    <section class="hero" aria-label="Featured films">
+      <div class="hero-slides" id="hero-slides" aria-hidden="true"></div>
+      <div class="hero-overlay"></div>
+      <div class="container hero-content" id="hero-content">
+        <p class="eyebrow">The Film Edit</p>
+        <h1>Discover films. Find your <em>screening</em>.</h1>
+        <p class="hero-text">A film guide for Lahore: what's playing, what's coming, and the cinemas to see it in.</p>
+        <div class="hero-buttons">
+          <a class="button" href="discover.html">Explore Movies</a>
+          <a class="button button-light" href="cinemas.html">Find a Cinema</a>
+        </div>
+        <a class="hero-film" id="hero-film" href="discover.html"><span>On the cover</span><strong id="hero-film-name"></strong></a>
+        <div class="hero-controls">
+          <button class="arrow-btn" id="hero-prev" type="button" aria-label="Previous film">&larr;</button>
+          <div class="dots" id="hero-dots"></div>
+          <button class="arrow-btn" id="hero-next" type="button" aria-label="Next film">&rarr;</button>
+        </div>
+        <p class="hero-note">Illustrated artwork. Official posters can be added once real film data is available.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="now-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">No. 01</p>
+            <h2 id="now-title">Now <em>showing</em></h2>
+          </div>
+          <p>Films with screenings on the Lahore schedule.</p>
+          <a class="arrow-link" href="now-showing.html">View all &rarr;</a>
+          <div class="rail-buttons">
+            <button class="arrow-btn" id="rail-prev" type="button" aria-label="Scroll films left">&larr;</button>
+            <button class="arrow-btn" id="rail-next" type="button" aria-label="Scroll films right">&rarr;</button>
+          </div>
+        </div>
+        <div class="rail" id="now-rail"></div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="soon-title">
+      <div class="container upcoming">
+        <div>
+          <p class="eyebrow">No. 02</p>
+          <h2 id="soon-title">Coming <em>soon</em></h2>
+          <p>The release calendar.</p>
+          <a class="arrow-link" href="coming-soon.html">See the calendar &rarr;</a>
+        </div>
+        <div class="upcoming-list" id="upcoming-list"></div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Editor's pick">
+      <div class="container pick" id="pick"></div>
+    </section>
+
+    <section class="section" aria-labelledby="cinema-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">No. 03</p>
+            <h2 id="cinema-title">Where to <em>watch</em></h2>
+          </div>
+          <p>The cinemas behind the schedule, with the number of screenings each has this week.</p>
+          <a class="arrow-link" href="cinemas.html">All cinemas &rarr;</a>
+        </div>
+        <ul id="cinema-list"></ul>
+      </div>
+    </section>
+
+    <section class="cta" aria-labelledby="cta-title">
+      <div class="container">
+        <h2 id="cta-title">Find your next night at the <em>cinema</em>.</h2>
+        <p>Browse the catalogue, then see what's showing near you.</p>
+        <a class="button" href="discover.html">Discover films</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="logo" href="index.html">Cine<em>sphere</em></a>
+          <p>Discover films, then find where and when they're showing in Lahore, Pakistan.</p>
+        </div>
+        <nav aria-label="Explore">
+          <h2>Explore</h2>
+          <ul>
+            <li><a href="discover.html">Discover</a></li>
+            <li><a href="now-showing.html">Now showing</a></li>
+            <li><a href="coming-soon.html">Coming soon</a></li>
+            <li><a href="cinemas.html">Cinemas</a></li>
+          </ul>
+        </nav>
+        <div>
+          <h2>Cinemas in Lahore</h2>
+          <ul id="footer-cinemas"></ul>
+        </div>
+        <div>
+          <h2>About</h2>
+          <p>A university Web Technology course project.</p>
+        </div>
+      </div>
+      <div class="footer-legal">
+        <p>This website uses TMDB and the TMDB APIs but is not endorsed, certified, or otherwise approved by TMDB.</p>
+        <p>&copy; 2026 CineSphere</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

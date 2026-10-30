@@ -24,26 +24,18 @@ function getCinemaById(id) {
     return null;
 }
 
-// How many screenings does a movie have?
-function countMovieShowtimes(movieId) {
-    let count = 0;
+// Find the screenings of one movie at one cinema. Use "any" for the movie or the cinema to skip that check.
+// Examples: findShowtimes(3, "C001")  or  findShowtimes(3, "any").length  (how many screenings movie 3 has)
+function findShowtimes(movieId, cinemaId) {
+    let list = [];
     for (let i = 0; i < showtimes.length; i++) {
-        if (showtimes[i].movieId == movieId) {
-            count = count + 1;
+        let movieOk = (movieId == "any" || showtimes[i].movieId == movieId);
+        let cinemaOk = (cinemaId == "any" || showtimes[i].cinemaId == cinemaId);
+        if (movieOk && cinemaOk) {
+            list.push(showtimes[i]);
         }
     }
-    return count;
-}
-
-// How many screenings does a cinema have?
-function countCinemaShowtimes(cinemaId) {
-    let count = 0;
-    for (let i = 0; i < showtimes.length; i++) {
-        if (showtimes[i].cinemaId == cinemaId) {
-            count = count + 1;
-        }
-    }
-    return count;
+    return list;
 }
 
 // Today's date as text like "2026-10-30" (same style as the dates in data.js).
@@ -55,12 +47,12 @@ function getToday() {
 function getNowShowing() {
     let list = [];
     for (let i = 0; i < movies.length; i++) {
-        if (countMovieShowtimes(movies[i].id) > 0) {
+        if (findShowtimes(movies[i].id, "any").length > 0) {
             list.push(movies[i]);
         }
     }
     list.sort(function (a, b) {
-        return countMovieShowtimes(b.id) - countMovieShowtimes(a.id);
+        return findShowtimes(b.id, "any").length - findShowtimes(a.id, "any").length;
     });
     return list;
 }
@@ -70,13 +62,11 @@ function getComingSoon() {
     let today = getToday();
     let list = [];
     for (let i = 0; i < movies.length; i++) {
-        if (movies[i].releaseDate > today && countMovieShowtimes(movies[i].id) == 0) {
+        if (movies[i].releaseDate > today && findShowtimes(movies[i].id, "any").length == 0) {
             list.push(movies[i]);
         }
     }
-    list.sort(function (a, b) {
-        return a.releaseDate.localeCompare(b.releaseDate);
-    });
+    list.sort(function (a, b) { return a.releaseDate.localeCompare(b.releaseDate); });
     return list;
 }
 
@@ -103,17 +93,11 @@ function getGenres(list) {
 // Sort a list of movies. how is "newest", "oldest" or "title".
 function sortMovies(list, how) {
     if (how == "title") {
-        list.sort(function (a, b) {
-            return a.title.localeCompare(b.title);
-        });
+        list.sort(function (a, b) { return a.title.localeCompare(b.title); });
     } else if (how == "oldest") {
-        list.sort(function (a, b) {
-            return a.releaseDate.localeCompare(b.releaseDate);
-        });
+        list.sort(function (a, b) { return a.releaseDate.localeCompare(b.releaseDate); });
     } else {
-        list.sort(function (a, b) {
-            return b.releaseDate.localeCompare(a.releaseDate);
-        });
+        list.sort(function (a, b) { return b.releaseDate.localeCompare(a.releaseDate); });
     }
 }
 
@@ -138,22 +122,18 @@ function getYear(movie) {
 
 // 119 minutes -> "1h 59m"
 function formatRuntime(minutes) {
-    let hours = Math.floor(minutes / 60);
-    let left = minutes % 60;
-    return hours + "h " + left + "m";
+    return Math.floor(minutes / 60) + "h " + (minutes % 60) + "m";
 }
 
 // "2026-10-30" -> "Fri Oct 30 2026"
 function formatDate(dateText) {
-    let date = new Date(dateText + "T00:00:00");
-    return date.toDateString();
+    return new Date(dateText + "T00:00:00").toDateString();
 }
 
 // "14:30" -> "2:30 PM"
 function formatTime(time) {
     let parts = time.split(":");
     let hours = Number(parts[0]);
-    let minutes = parts[1];
     let ampm = "AM";
 
     if (hours >= 12) {
@@ -165,96 +145,21 @@ function formatTime(time) {
     if (hours == 0) {
         hours = 12;
     }
-    return hours + ":" + minutes + " " + ampm;
+    return hours + ":" + parts[1] + " " + ampm;
 }
 
 
-// ================= Artwork =================
-// There are no real posters yet, so each movie gets a simple picture drawn with SVG.
-// The colours depend on the movie's first genre.
+// ================= Pictures and movie cards =================
 
-let artCount = 0;
-
-function getArtColors(movie) {
-    let genre = movie.genres[0];
-    // Each list is [dark colour, middle colour, light colour].
-    if (genre == "Horror") {
-        return ["#1a0f0c", "#7a3320", "#f6b46b"];
-    } else if (genre == "Science Fiction") {
-        return ["#071419", "#14515d", "#9fdde3"];
-    } else if (genre == "Action") {
-        return ["#1b0810", "#7a1f35", "#ff97a8"];
-    } else if (genre == "Animation") {
-        return ["#08150f", "#21663f", "#a8e8bd"];
-    } else if (genre == "Fantasy") {
-        return ["#14140a", "#58571d", "#ecd982"];
-    }
-    return ["#100b1e", "#46327d", "#cdb4ff"];
-}
-
-// Draws a picture of the given size: a sky, a glowing sun and two dark hills.
-function makeArt(movie, width, height) {
-    let colors = getArtColors(movie);
-    artCount = artCount + 1;
-    let skyId = "sky" + artCount;
-    let glowId = "glow" + artCount;
-
-    // Wide pictures put the sun on the right so the text on the left stays readable.
-    let sunX = width * 0.5;
-    let align = "xMidYMid slice";
-    if (width > height) {
-        sunX = width * 0.78;
-        align = "xMaxYMid slice";
-    }
-    let sunY = height * (0.3 + (movie.id % 3) * 0.08);
-    let size = Math.min(width, height);
-
-    return `<svg viewBox="0 0 ${width} ${height}" preserveAspectRatio="${align}" aria-hidden="true">
-        <defs>
-            <linearGradient id="${skyId}" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="${colors[0]}"/>
-                <stop offset="1" stop-color="${colors[1]}"/>
-            </linearGradient>
-            <radialGradient id="${glowId}">
-                <stop offset="0" stop-color="${colors[2]}" stop-opacity="0.6"/>
-                <stop offset="1" stop-color="${colors[2]}" stop-opacity="0"/>
-            </radialGradient>
-        </defs>
-        <rect width="${width}" height="${height}" fill="url(#${skyId})"/>
-        <circle cx="${sunX}" cy="${sunY}" r="${size * 0.5}" fill="url(#${glowId})"/>
-        <circle cx="${sunX}" cy="${sunY}" r="${size * 0.14}" fill="${colors[2]}"/>
-        <ellipse cx="${width * 0.25}" cy="${height * 1.02}" rx="${width * 0.7}" ry="${height * 0.2}" fill="${colors[0]}" opacity="0.85"/>
-        <ellipse cx="${width * 0.9}" cy="${height * 1.05}" rx="${width * 0.6}" ry="${height * 0.17}" fill="${colors[0]}"/>
-    </svg>`;
-}
-
-// A tall picture (2:3). Uses movie.poster if the movie has one, otherwise the drawing.
+// A tall picture (2:3) of the movie poster.
 function makePoster(movie) {
-    if (movie.poster) {
-        return `<div class="poster"><img src="${movie.poster}" alt="${movie.title} poster" loading="lazy"></div>`;
-    }
-    return `<div class="poster">${makeArt(movie, 400, 600)}</div>`;
+    return `<div class="poster"><img src="${movie.poster}" alt="${movie.title} poster" loading="lazy"></div>`;
 }
 
-// A wide picture (16:9). Uses movie.backdrop if the movie has one, otherwise the drawing.
+// A wide picture (16:9). Used for the cover slideshow, the upcoming cards and the editor's pick.
 function makeBackdrop(movie) {
-    if (movie.backdrop) {
-        return `<img class="backdrop-image" src="${movie.backdrop}" alt="">`;
-    }
-    return makeArt(movie, 1600, 900);
+    return `<img class="backdrop-image" src="${movie.backdrop}" alt="" loading="lazy">`;
 }
-
-
-// A medium wide picture (16:9) for cards. Uses movie.backdrop if the movie has one, otherwise the drawing.
-function makeStill(movie) {
-    if (movie.backdrop) {
-        return `<img class="backdrop-image" src="${movie.backdrop}" alt="" loading="lazy">`;
-    }
-    return makeArt(movie, 640, 360);
-}
-
-
-// ================= Movie cards =================
 
 // A poster with the title and year under it. tagText is optional small text such as "8 screenings".
 function makePosterCard(movie, tagText) {
@@ -267,9 +172,7 @@ function makePosterCard(movie, tagText) {
     if (tagText) {
         html += `<p class="tag">${tagText}</p>`;
     }
-
-    html += `</a></article>`;
-    return html;
+    return html + `</a></article>`;
 }
 
 // A wide picture with the release date above it (used for upcoming movies).
@@ -280,59 +183,93 @@ function makeUpcomingCard(movie) {
     return `<article class="upcoming-card">
         <a href="movie.html?id=${movie.id}">
             <p class="date-plate"><span class="big-date">${dayAndMonth}</span> ${getYear(movie)}</p>
-            <div class="still">${makeStill(movie)}</div>
+            <div class="still">${makeBackdrop(movie)}</div>
             <h3>${movie.title}</h3>
             <p class="small-text">${movie.genres.slice(0, 2).join(" / ")} &middot; ${formatRuntime(movie.runtime)}</p>
         </a>
     </article>`;
 }
 
+// One row of the cinema list (home page and cinemas page). number is the position, starting at 1.
+function makeCinemaRow(cinema, number) {
+    return `<li class="cinema-row">
+        <span class="cinema-number">0${number}</span>
+        <div>
+            <h3><a href="cinema.html?id=${cinema.id}">${cinema.name}</a></h3>
+            <p class="small-text">${cinema.area}</p>
+        </div>
+        <p class="small-text">${cinema.address}</p>
+        <p class="small-text"><strong>${findShowtimes("any", cinema.id).length}</strong> demo screenings</p>
+        <a class="arrow-link" href="cinema.html?id=${cinema.id}">Showtimes &rarr;</a>
+    </li>`;
+}
+
+// Fills a box with a button for "All" and one for each genre.
+// The button that matches "selected" gets the selected look. Clicking a button runs onClick(genre).
+// ("" means all genres.)
+function makeGenreButtons(box, genres, selected, onClick) {
+    let names = [""].concat(genres);
+    box.innerHTML = "";
+
+    for (let i = 0; i < names.length; i++) {
+        let button = document.createElement("button");
+        button.type = "button";
+        button.className = "chip";
+        button.textContent = names[i];
+        if (names[i] == "") {
+            button.textContent = "All";
+        }
+
+        button.setAttribute("aria-pressed", names[i] == selected);
+        if (names[i] == selected) {
+            button.classList.add("selected");
+        }
+
+        button.addEventListener("click", function () {
+            onClick(names[i]);
+        });
+        box.appendChild(button);
+    }
+}
+
 
 // ================= Showtimes =================
 
-// Sort screenings by date, then by time.
-function sortShowtimes(list) {
-    list.sort(function (a, b) {
-        return (a.date + a.time).localeCompare(b.date + b.time);
-    });
-}
-
 // Takes the screenings of ONE movie at ONE cinema and shows one row for each date.
 function makeDateRows(list) {
-    sortShowtimes(list);
+    list.sort(function (a, b) { return (a.date + a.time).localeCompare(b.date + b.time); });
 
-    let html = "";
-    let lastDate = "";
-
+    // The different dates, in order.
+    let dates = [];
     for (let i = 0; i < list.length; i++) {
-        let show = list[i];
-
-        // A new date starts a new row.
-        if (show.date != lastDate) {
-            if (lastDate != "") {
-                html += `</div></div>`;
-            }
-            html += `<div class="date-row"><p class="date-label">${formatDate(show.date)}</p><div class="times">`;
-            lastDate = show.date;
+        if (!dates.includes(list[i].date)) {
+            dates.push(list[i].date);
         }
-
-        // "Sold out" becomes the class "sold-out", "Few left" becomes "few-left".
-        let statusClass = show.tickets.toLowerCase().replace(" ", "-");
-
-        // Only show the subtitle line when the screening has subtitles.
-        let subtitleLine = "";
-        if (show.subtitles != "None") {
-            subtitleLine = `<small>${show.subtitles} subtitles</small>`;
-        }
-
-        html += `<span class="time ${statusClass}">${formatTime(show.time)}
-            <small>${show.format} &middot; ${show.language}</small>
-            ${subtitleLine}
-            <small class="ticket-status">${show.tickets}</small></span>`;
     }
 
-    if (list.length > 0) {
-        html += `</div></div>`;
+    let html = "";
+    for (let i = 0; i < dates.length; i++) {
+        // One box for each screening on this date.
+        let times = "";
+        for (let j = 0; j < list.length; j++) {
+            let show = list[j];
+            if (show.date == dates[i]) {
+                // "Sold out" becomes the class "sold-out", "Few left" becomes "few-left".
+                let statusClass = show.tickets.toLowerCase().replace(" ", "-");
+
+                // Only show the subtitle line when the screening has subtitles.
+                let subtitleLine = "";
+                if (show.subtitles != "None") {
+                    subtitleLine = `<small>${show.subtitles} subtitles</small>`;
+                }
+
+                times += `<span class="time ${statusClass}">${formatTime(show.time)}
+                    <small>${show.format} &middot; ${show.language}</small>
+                    ${subtitleLine}
+                    <small class="ticket-status">${show.tickets}</small></span>`;
+            }
+        }
+        html += `<div class="date-row"><p class="date-label">${formatDate(dates[i])}</p><div class="times">${times}</div></div>`;
     }
     return html;
 }
@@ -362,11 +299,7 @@ document.addEventListener("keydown", function (event) {
 let header = document.getElementById("site-header");
 
 function updateHeader() {
-    if (window.scrollY > 30) {
-        header.classList.add("scrolled");
-    } else {
-        header.classList.remove("scrolled");
-    }
+    header.classList.toggle("scrolled", window.scrollY > 30);
 }
 window.addEventListener("scroll", updateHeader);
 updateHeader();

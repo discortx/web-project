@@ -1,0 +1,1204 @@
+/* CineSphere - one stylesheet for every page.
+   Sections: 1 Colours  2 Basics  3 Header  4 Buttons  5 Home hero  6 Home sections  7 Posters and cards
+             8 Inner pages  9 Movie page  10 Footer  11 Small screens */
+
+
+/* ================= 1. Colours and shadows ================= */
+/* Neumorphism: all surfaces are almost the same dark grey. Depth comes from two shadows:
+   a dark one (bottom right) and a light one (top left).
+   "raised" looks pushed out of the page, "inset" looks pushed into it. */
+:root {
+    --bg: #202126;        /* page */
+    --raised: #26272d;    /* raised surfaces */
+    --inset: #1b1c21;     /* pressed-in surfaces */
+    --hover: #2c2d34;
+    --text: #f3f0ed;
+    --text-soft: #b6b6be;
+    --text-muted: #9d9da7;
+    --red: #d92d4b;       /* small marks and lines */
+    --red-dark: #c42a42;  /* button background (white text on it is readable) */
+    --outline: #72727d;   /* border of inputs, so they are easy to see */
+    --line: #33343b;
+
+    --raised-shadow: 6px 6px 14px rgba(0, 0, 0, 0.5), -6px -6px 14px rgba(255, 255, 255, 0.045);
+    --raised-shadow-small: 3px 3px 8px rgba(0, 0, 0, 0.5), -3px -3px 8px rgba(255, 255, 255, 0.045);
+    --inset-shadow: inset 4px 4px 9px rgba(0, 0, 0, 0.5), inset -3px -3px 8px rgba(255, 255, 255, 0.045);
+    --inset-shadow-small: inset 2px 2px 5px rgba(0, 0, 0, 0.5), inset -2px -2px 4px rgba(255, 255, 255, 0.045);
+
+    --radius: 12px;
+    --font-heading: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', Arial, sans-serif;
+}
+
+
+/* ================= 2. Basics ================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text-soft);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+img, svg {
+    display: block;
+    width: 100%;
+}
+
+ul {
+    list-style: none;
+}
+
+button, input, select {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+}
+
+button {
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+a {
+    color: inherit;
+}
+
+/* Keyboard users see a clear outline on whatever has focus. */
+a:focus, button:focus, input:focus, select:focus {
+    outline: 3px solid var(--text);
+    outline-offset: 3px;
+}
+
+h1, h2, h3 {
+    color: var(--text);
+    font-family: var(--font-heading);
+    line-height: 1.15;
+}
+
+h1 { font-size: 3.5rem; }
+h2 { font-size: 2.5rem; margin-bottom: 24px; }
+h3 { font-size: 1.3rem; }
+em { font-weight: 500; }
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section {
+    padding-top: 100px;
+}
+
+/* Text that screen readers read but that is not drawn on the screen. */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+}
+
+.eyebrow {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.small-text {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.lead {
+    color: var(--text);
+    font-size: 1.15rem;
+    margin: 16px 0 24px;
+}
+
+.arrow-link {
+    color: var(--text);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.arrow-link:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--red);
+    text-underline-offset: 5px;
+}
+
+/* A box with a message when there is nothing to show. It looks pressed in. */
+.empty {
+    padding: 40px;
+    background: var(--inset);
+    border-radius: 22px;
+    box-shadow: var(--inset-shadow);
+}
+
+.empty h1, .empty h3 {
+    margin-bottom: 8px;
+}
+
+.empty .button {
+    margin-top: 16px;
+}
+
+.note {
+    margin-top: 24px;
+    padding: 12px 16px;
+    background: var(--inset);
+    border-left: 3px solid var(--red);
+    border-radius: var(--radius);
+    box-shadow: var(--inset-shadow-small);
+    font-size: 0.875rem;
+}
+
+.note strong {
+    color: var(--text);
+}
+
+
+/* ================= 3. Header and navigation ================= */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    height: 68px;
+}
+
+/* On the inner pages the header is always solid. On the home page it turns solid after scrolling. */
+.site-header.solid, .site-header.scrolled {
+    background: var(--bg);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.logo {
+    color: var(--text);
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-link {
+    padding: 8px 16px;
+    border-radius: var(--radius);
+    color: var(--text-soft);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    background: var(--raised);
+    color: var(--text);
+}
+
+/* The page you are on is pressed in and has a red line under it. */
+.nav-link[aria-current="page"] {
+    background: var(--inset);
+    box-shadow: var(--inset-shadow-small);
+    border-bottom: 2px solid var(--red);
+    color: var(--text);
+}
+
+/* Search box in the header: a pressed-in field. */
+.nav-search {
+    display: flex;
+    margin-left: 16px;
+}
+
+.nav-search input {
+    width: 160px;
+    height: 40px;
+    padding: 0 12px;
+    background: var(--inset);
+    border: 1px solid var(--outline);
+    border-radius: var(--radius) 0 0 var(--radius);
+    box-shadow: var(--inset-shadow-small);
+}
+
+.nav-search button {
+    height: 40px;
+    padding: 0 14px;
+    background: var(--raised);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    box-shadow: var(--raised-shadow-small);
+    color: var(--text);
+    font-size: 0.8125rem;
+    font-weight: 500;
+}
+
+.menu-button {
+    display: none;
+    height: 40px;
+    padding: 0 16px;
+    background: var(--raised);
+    border-radius: var(--radius);
+    box-shadow: var(--raised-shadow-small);
+    color: var(--text);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+
+/* ================= 4. Buttons ================= */
+/* Red button = main action. "button-light" = grey raised button for other actions. */
+.button {
+    display: inline-block;
+    padding: 14px 26px;
+    background: var(--red-dark);
+    border-radius: var(--radius);
+    box-shadow: var(--raised-shadow-small);
+    color: var(--text);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.button:hover {
+    background: #ad2238;
+}
+
+.button-light {
+    background: var(--raised);
+}
+
+.button-light:hover {
+    background: var(--hover);
+}
+
+/* Pressing a button makes it look pushed in. */
+.button:active, .chip:active, .arrow-btn:active, .menu-button:active {
+    box-shadow: var(--inset-shadow-small);
+}
+
+.chip {
+    padding: 8px 16px;
+    background: var(--raised);
+    border-radius: var(--radius);
+    box-shadow: var(--raised-shadow-small);
+    color: var(--text-soft);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.chip:hover {
+    background: var(--hover);
+    color: var(--text);
+}
+
+/* The chosen filter is pressed in, bold, and has a red line under it. */
+.chip.selected {
+    background: var(--inset);
+    box-shadow: var(--inset-shadow-small);
+    border-bottom: 3px solid var(--red);
+    color: var(--text);
+    font-weight: 600;
+}
+
+.arrow-btn {
+    width: 44px;
+    height: 44px;
+    background: var(--raised);
+    border-radius: 50%;
+    box-shadow: var(--raised-shadow-small);
+    color: var(--text);
+    font-size: 1.1rem;
+}
+
+
+/* ================= 5. Home page cover (hero) ================= */
+.hero {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    min-height: 90vh;
+    padding: 140px 0 60px;
+    overflow: hidden;
+    background: var(--raised);
+}
+
+/* The slides are stacked on top of each other. Only the "active" one can be seen. */
+.hero-slides {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.hero-slide.active {
+    opacity: 1;
+}
+
+.hero-slide svg, .backdrop-image {
+    height: 100%;
+    object-fit: cover;
+}
+
+/* A dark fade so the white text on the left is easy to read. */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(32, 33, 38, 0.95) 0%, rgba(32, 33, 38, 0.6) 40%, rgba(32, 33, 38, 0) 80%),
+                linear-gradient(0deg, var(--bg) 0%, rgba(32, 33, 38, 0) 30%);
+}
+
+.hero-content {
+    position: relative;
+}
+
+.hero h1 {
+    max-width: 700px;
+    margin: 16px 0 20px;
+    font-size: 5rem;
+    line-height: 1.02;
+}
+
+.hero-text {
+    max-width: 500px;
+    margin-bottom: 24px;
+    color: var(--text);
+    font-size: 1.15rem;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+/* "On the cover" label: a small pressed-in box. */
+.hero-film {
+    display: inline-block;
+    margin-top: 28px;
+    padding: 10px 16px;
+    background: var(--inset);
+    border-radius: var(--radius);
+    box-shadow: var(--inset-shadow-small);
+    color: var(--text);
+    font-size: 0.875rem;
+    text-decoration: none;
+}
+
+.hero-film span {
+    margin-right: 8px;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.hero-film:hover strong {
+    text-decoration: underline;
+    text-decoration-color: var(--red);
+    text-underline-offset: 4px;
+}
+
+/* Arrows and dots under the label (always on their own row). */
+.hero-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.dots {
+    display: flex;
+    align-items: center;
+}
+
+/* Each dot is a 44px-high button with a small circle inside it. The current dot is a longer red bar. */
+.dot {
+    width: 30px;
+    height: 44px;
+}
+
+.dot span {
+    display: block;
+    width: 10px;
+    height: 10px;
+    margin: 0 auto;
+    background: var(--inset);
+    border: 1px solid var(--outline);
+    border-radius: 50%;
+}
+
+.dot.active span {
+    width: 24px;
+    background: var(--red);
+    border-color: var(--red);
+    border-radius: 6px;
+}
+
+.hero-note {
+    margin-top: 16px;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+
+
+/* ================= 6. Home page sections ================= */
+.section-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-top: 28px;
+    margin-bottom: 40px;
+    border-top: 1px solid var(--line);
+}
+
+.section-head h2 {
+    margin-bottom: 0;
+}
+
+.section-head p {
+    max-width: 420px;
+}
+
+.rail-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+/* One row of posters that can be scrolled sideways. */
+.rail {
+    display: flex;
+    gap: 24px;
+    padding: 12px 12px 24px;
+    margin: -12px;
+    overflow-x: auto;
+}
+
+.rail .poster-card {
+    flex: 0 0 200px;
+}
+
+/* Coming soon: text on the left, cards on the right. */
+.upcoming {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 40px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+}
+
+.upcoming h2 {
+    margin: 12px 0 16px;
+}
+
+.upcoming .arrow-link {
+    display: inline-block;
+    margin-top: 16px;
+}
+
+.upcoming-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 24px;
+}
+
+.upcoming-card a, .poster-card a {
+    display: block;
+    text-decoration: none;
+}
+
+.date-plate {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 10px 16px;
+    margin-bottom: 16px;
+    background: var(--inset);
+    border-radius: var(--radius);
+    box-shadow: var(--inset-shadow-small);
+    font-size: 0.75rem;
+}
+
+.big-date {
+    color: var(--text);
+    font-family: var(--font-heading);
+    font-size: 2rem;
+}
+
+.still {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--inset);
+    border-radius: 10px;
+    box-shadow: var(--raised-shadow-small);
+}
+
+.upcoming-card h3 {
+    margin-top: 12px;
+}
+
+/* Editor's pick: a picture with a raised text box on top of its right side. */
+.pick {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+}
+
+.pick-picture {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-radius: 22px;
+    box-shadow: var(--raised-shadow);
+}
+
+.pick-text {
+    margin-left: -80px;
+    padding: 40px 32px;
+    background: var(--raised);
+    border-radius: 22px;
+    box-shadow: var(--raised-shadow);
+}
+
+.pick-text h3 {
+    margin: 12px 0;
+    font-size: 2.2rem;
+}
+
+.pick-text p {
+    margin-bottom: 16px;
+}
+
+/* The list of cinemas: rows with lines between them. */
+.cinema-row {
+    display: grid;
+    grid-template-columns: 40px 1.5fr 2fr 1fr auto;
+    gap: 24px;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.cinema-number {
+    color: var(--text-muted);
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 1.2rem;
+}
+
+.cinema-row h3 a {
+    text-decoration: none;
+}
+
+.cinema-row h3 a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--red);
+}
+
+.cinema-row strong {
+    display: block;
+    color: var(--text);
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+}
+
+/* The big sentence near the bottom of the home page: a pressed-in band. */
+.cta {
+    margin-top: 100px;
+    padding: 100px 0;
+    background: var(--inset);
+    box-shadow: var(--inset-shadow);
+}
+
+.cta h2 {
+    max-width: 700px;
+    font-size: 4rem;
+}
+
+.cta p {
+    margin-bottom: 16px;
+}
+
+
+/* ================= 7. Posters and movie cards ================= */
+.poster {
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+    background: var(--inset);
+    border-radius: 10px;
+    box-shadow: var(--raised-shadow-small);
+}
+
+.poster svg, .poster img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.poster-card h3 {
+    margin-top: 12px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+/* A small pressed-in label, for example "8 screenings". */
+.tag {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 2px 10px;
+    background: var(--inset);
+    border-radius: 8px;
+    box-shadow: var(--inset-shadow-small);
+    color: var(--text-soft);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.poster-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 40px 24px;
+}
+
+/* The picture zooms slightly when the mouse is over the card. */
+.poster-card:hover .poster, .upcoming-card:hover .still {
+    box-shadow: var(--raised-shadow);
+}
+
+.poster-card:hover svg, .upcoming-card:hover svg {
+    transform: scale(1.04);
+}
+
+.poster svg, .still svg {
+    transition: transform 0.3s;
+}
+
+.poster-card:hover h3, .upcoming-card:hover h3 {
+    text-decoration: underline;
+    text-decoration-color: var(--red);
+    text-underline-offset: 4px;
+}
+
+
+/* ================= 8. Inner pages (Discover, Now Showing, Coming Soon, Cinemas) ================= */
+.inner {
+    padding-top: 68px;
+    padding-bottom: 20px;
+}
+
+.page-head {
+    padding: 70px 0 40px;
+}
+
+.page-head h1 {
+    margin: 12px 0 16px;
+    max-width: 700px;
+}
+
+.page-head p {
+    max-width: 600px;
+}
+
+/* The search and filter panel: one big raised panel. */
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 24px;
+    background: var(--raised);
+    border-radius: 22px;
+    box-shadow: var(--raised-shadow);
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.field-wide {
+    flex: 1 1 300px;
+}
+
+.field label, .field .label {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+/* Text boxes and dropdowns look pressed in and have a clear border. */
+.field input, .field select {
+    height: 48px;
+    padding: 0 16px;
+    background: var(--inset);
+    border: 1px solid var(--outline);
+    border-radius: var(--radius);
+    box-shadow: var(--inset-shadow);
+}
+
+.field input::placeholder {
+    color: var(--text-muted);
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.genre-field {
+    flex: 1 1 100%;
+}
+
+.results-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+}
+
+.text-button {
+    color: var(--text);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-decoration-color: var(--red);
+    text-underline-offset: 5px;
+}
+
+.poster-grid .empty, .upcoming-list .empty {
+    grid-column: 1 / -1;
+}
+
+/* Coming soon page: three cards in a row. */
+.upcoming-list.wide {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.page-head .button {
+    margin-top: 8px;
+}
+
+
+/* ================= 9. Movie page and showtimes ================= */
+.movie-hero {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    min-height: 55vh;
+    padding: 120px 0 48px;
+    overflow: hidden;
+    background: var(--raised);
+}
+
+.movie-hero h1 {
+    margin: 16px 0 8px;
+    max-width: 800px;
+    font-size: 4.5rem;
+    line-height: 1.02;
+}
+
+.movie-hero p {
+    color: var(--text);
+}
+
+.movie-layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 48px;
+    padding-top: 48px;
+    align-items: start;
+}
+
+.movie-side {
+    position: sticky;
+    top: 90px;
+}
+
+.movie-side .poster {
+    box-shadow: var(--raised-shadow);
+}
+
+.movie-main .poster-grid {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.movie-main h2 {
+    margin-top: 64px;
+}
+
+/* Director, release, runtime...: one pressed-in panel. */
+.facts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 32px;
+    margin-top: 40px;
+    padding: 8px 24px;
+    background: var(--inset);
+    border-radius: 22px;
+    box-shadow: var(--inset-shadow);
+}
+
+.facts div {
+    padding: 16px 0;
+}
+
+.facts dt {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.facts dd {
+    color: var(--text);
+}
+
+/* Showtimes: the cinema (or movie) name on the left, dates and times on the right. */
+.show-group {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 24px;
+    padding: 20px 0;
+    border-top: 1px solid var(--line);
+}
+
+.show-group h3 a {
+    text-decoration: none;
+}
+
+/* Small poster beside the title in the cinema's showtime list. */
+.show-movie {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.show-poster {
+    flex: 0 0 84px;
+}
+
+.small-link {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.date-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 20px;
+    padding: 8px 0;
+}
+
+.date-label {
+    width: 140px;
+    color: var(--text);
+    font-weight: 600;
+}
+
+.times {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+/* One screening time: a small raised ticket with a red line at the bottom. */
+.time {
+    display: inline-block;
+    padding: 8px 16px;
+    background: var(--raised);
+    border-bottom: 2px solid var(--red);
+    border-radius: 10px;
+    box-shadow: var(--raised-shadow-small);
+    color: var(--text);
+    font-weight: 600;
+}
+
+.time small {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 400;
+}
+
+/* Ticket status is always written as text. Few left = red line, sold out = faded and pressed in. */
+.time .ticket-status {
+    margin-top: 4px;
+    color: var(--text);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.time.few-left .ticket-status {
+    color: #ff97a8;
+}
+
+.time.sold-out {
+    border-bottom-color: var(--outline);
+    box-shadow: none;
+    background: var(--inset);
+}
+
+.time.sold-out, .time.sold-out small {
+    color: var(--text-muted);
+}
+
+
+
+/* ================= 10. Footer ================= */
+.site-footer {
+    margin-top: 100px;
+    padding-top: 60px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.5fr 1.5fr;
+    gap: 32px;
+    padding-bottom: 40px;
+}
+
+.site-footer .logo {
+    font-size: 2rem;
+}
+
+.site-footer p {
+    margin-top: 16px;
+    max-width: 320px;
+    font-size: 0.875rem;
+}
+
+.site-footer h2 {
+    margin-bottom: 16px;
+    color: var(--text-muted);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.site-footer li {
+    margin-bottom: 6px;
+}
+
+.site-footer li a {
+    font-size: 0.875rem;
+    text-decoration: none;
+}
+
+.site-footer li a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--red);
+}
+
+.footer-legal {
+    padding: 24px 0;
+    border-top: 1px solid var(--line);
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+
+.footer-legal p {
+    max-width: 700px;
+    margin-top: 0;
+    font-size: 0.75rem;
+}
+
+
+/* ================= 11. Smaller screens ================= */
+
+/* Tablets: fewer columns, and the menu becomes a button. */
+@media (max-width: 900px) {
+    h1 { font-size: 2.8rem; }
+    h2 { font-size: 2rem; }
+    .hero h1, .movie-hero h1 { font-size: 3rem; }
+    .cta h2 { font-size: 2.5rem; }
+
+    .menu-button {
+        display: block;
+    }
+
+    /* The menu is hidden until the button adds the class "open". */
+    .nav {
+        display: none;
+        position: fixed;
+        top: 68px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 16px 5% 24px;
+        background: var(--bg);
+        box-shadow: 0 18px 30px rgba(0, 0, 0, 0.45);
+    }
+
+    .nav.open {
+        display: flex;
+    }
+
+    .nav-link {
+        padding: 14px 16px;
+        font-family: var(--font-heading);
+        font-size: 1.4rem;
+    }
+
+    .nav-search {
+        margin: 12px 0 0;
+    }
+
+    .nav-search input {
+        flex: 1;
+        width: auto;
+    }
+
+    /* On the home page the opened menu needs a solid colour too. */
+    .site-header .nav {
+        background: var(--bg);
+    }
+
+    .poster-grid, .upcoming-list.wide {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .upcoming, .pick, .movie-layout, .show-group {
+        grid-template-columns: 1fr;
+    }
+
+    .pick-text {
+        margin: -48px 16px 0;
+    }
+
+    .movie-side {
+        position: static;
+        max-width: 220px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .cinema-row {
+        grid-template-columns: 40px 1fr;
+        gap: 8px 16px;
+    }
+
+    .cinema-row p, .cinema-row .arrow-link {
+        grid-column: 2;
+    }
+}
+
+/* Phones: two columns of posters, one column of everything else. */
+@media (max-width: 600px) {
+    h1 { font-size: 2.3rem; }
+    .hero h1, .movie-hero h1 { font-size: 2.5rem; }
+    .section { padding-top: 64px; }
+
+    .hero {
+        min-height: 85vh;
+        padding-bottom: 40px;
+    }
+
+    /* The picture stays at the top and the text sits on a plain dark background. */
+    .hero-overlay {
+        background: linear-gradient(0deg, var(--bg) 45%, rgba(32, 33, 38, 0.1) 80%);
+    }
+
+    .hero-buttons .button {
+        flex: 1;
+    }
+
+    .poster-grid, .movie-main .poster-grid, .upcoming-list, .upcoming-list.wide, .facts {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .upcoming-list, .upcoming-list.wide, .facts {
+        grid-template-columns: 1fr;
+    }
+
+    .poster-grid {
+        gap: 32px 16px;
+    }
+
+    .rail .poster-card {
+        flex: 0 0 150px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .date-label {
+        width: 100%;
+    }
+
+    .field {
+        flex: 1 1 100%;
+    }
+}
+
+/* People who asked for less motion get no sliding or zooming. */
+@media (prefers-reduced-motion: reduce) {
+    .hero-slide, .poster svg, .still svg {
+        transition: none;
+    }
+
+    .poster-card:hover svg, .upcoming-card:hover svg {
+        transform: none;
+    }
+}

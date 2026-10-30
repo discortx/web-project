@@ -44,14 +44,7 @@ function makeShowtimeSection() {
 
     for (let i = 0; i < movies.length; i++) {
         let movie = movies[i];
-
-        // Collect the screenings of this movie at this cinema.
-        let list = [];
-        for (let j = 0; j < showtimes.length; j++) {
-            if (showtimes[j].movieId == movie.id && showtimes[j].cinemaId == cinema.id) {
-                list.push(showtimes[j]);
-            }
-        }
+        let list = findShowtimes(movie.id, cinema.id);
 
         if (list.length > 0) {
             html += `<section class="show-group">

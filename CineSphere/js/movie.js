@@ -74,27 +74,24 @@ function showMovie() {
 // One extra row for the facts panel: which formats (2D, 3D, IMAX) the movie is shown in
 // and whether any tickets are left. Returns nothing if the movie has no screenings.
 function makeFormatFact() {
+    let list = findShowtimes(movie.id, "any");
     let formats = [];
     let left = 0;
-    let total = 0;
 
-    for (let i = 0; i < showtimes.length; i++) {
-        if (showtimes[i].movieId == movie.id) {
-            total = total + 1;
-            if (!formats.includes(showtimes[i].format)) {
-                formats.push(showtimes[i].format);
-            }
-            if (showtimes[i].tickets != "Sold out") {
-                left = left + 1;
-            }
+    for (let i = 0; i < list.length; i++) {
+        if (!formats.includes(list[i].format)) {
+            formats.push(list[i].format);
+        }
+        if (list[i].tickets != "Sold out") {
+            left = left + 1;
         }
     }
 
-    if (total == 0) {
+    if (list.length == 0) {
         return "";
     }
 
-    let ticketText = left + " of " + total + " screenings have tickets";
+    let ticketText = left + " of " + list.length + " screenings have tickets";
     if (left == 0) {
         ticketText = "All screenings are sold out";
     }
@@ -109,14 +106,7 @@ function makeShowtimeSection() {
 
     for (let i = 0; i < cinemas.length; i++) {
         let cinema = cinemas[i];
-
-        // Collect the screenings of this movie at this cinema.
-        let list = [];
-        for (let j = 0; j < showtimes.length; j++) {
-            if (showtimes[j].movieId == movie.id && showtimes[j].cinemaId == cinema.id) {
-                list.push(showtimes[j]);
-            }
-        }
+        let list = findShowtimes(movie.id, cinema.id);
 
         if (list.length > 0) {
             html += `<section class="show-group">

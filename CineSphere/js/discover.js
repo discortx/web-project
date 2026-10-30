@@ -6,48 +6,21 @@ let genreBox = document.getElementById("genre-buttons");
 let movieBox = document.getElementById("movie-grid");
 let countText = document.getElementById("result-count");
 
-let selectedGenre = "";   // "" means all genres
 
 // The header search form sends the visitor here with ?q=... in the address.
 let parameters = new URLSearchParams(window.location.search);
 searchBox.value = parameters.get("q") || "";
-selectedGenre = parameters.get("genre") || "";
+let selectedGenre = parameters.get("genre") || "";   // "" means all genres
 
 
-// Create one button for "All" and one for each genre.
 function showGenreButtons() {
-    let genres = getGenres(movies);
-    genreBox.innerHTML = "";
+    makeGenreButtons(genreBox, getGenres(movies), selectedGenre, pickGenre);
+}
 
-    // The list of buttons starts with "All" (an empty text means no genre filter).
-    let names = [""].concat(genres);
-
-    for (let i = 0; i < names.length; i++) {
-        let button = document.createElement("button");
-        button.type = "button";
-        button.className = "chip";
-
-        if (names[i] == "") {
-            button.textContent = "All";
-        } else {
-            button.textContent = names[i];
-        }
-
-        // The chosen genre gets the "selected" look.
-        if (names[i] == selectedGenre) {
-            button.classList.add("selected");
-            button.setAttribute("aria-pressed", "true");
-        } else {
-            button.setAttribute("aria-pressed", "false");
-        }
-
-        button.addEventListener("click", function () {
-            selectedGenre = names[i];
-            showGenreButtons();
-            showMovies();
-        });
-        genreBox.appendChild(button);
-    }
+function pickGenre(genre) {
+    selectedGenre = genre;
+    showGenreButtons();
+    showMovies();
 }
 
 
